@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+
+
+@theme {
+  --color-ink: #14171f;
+  --color-surface: #fafaf8;
+  --color-primary: #8c29e9;
+  --color-primary-dark: #a318e3;
+  --color-accent: #c17f2e;
+  --color-line: #e4e2dc;
+  --color-purple-border: #8010bd;
+  --color-red-border: #f21515;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+
+.dark {
+  --color-ink: #f2f1ed;
+  --color-surface: #090a0a;
+  --color-primary: #b240e6;
+  --color-primary-dark: #a318e3;
+  --color-line: #2a2e33;
+  --color-purple-border: #c039ff;
+  
+}
+
+/*.test {
+  --color-purple-soft: #d5aded;
+  --color-purple-border: #b138f3;
+  --color-red-border: #f21515;
+  --color-primary: #8c29e9;
+}*/
+
+
+@layer base {
+  body { @apply bg-surface text-ink ;}
+  h1 { @apply text-3xl font-bold text-ink font-display; }
+  h2 { @apply text-lg font-semibold text-ink; }
+  p  { @apply text-base text-ink font-body; }
+}
