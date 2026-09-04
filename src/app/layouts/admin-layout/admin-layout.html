@@ -1,0 +1,18 @@
+<div class="flex h-screen">
+    <aside class="w-64 bg-gray-900 text-white p-4 flex flex-col">
+        <h2 class="text-lg font-bold mb-6">Panel Admin</h2>
+        <nav class="flex flex-col gap-2">
+            <a routerLink="/dashboard" routerLinkActive="font-bold">Dasboard</a>
+            <a routerLink="/categorias" routerLinkActive="font-bold">Categorias</a>
+        </nav>
+        <div class="mt-auto">
+            <button (click)="cerrarSesion()" type="button" class="w-full bg-red-600 hover:bg-red-700 p-2 rounded-full cursor-pointer">
+                Cerrar Sesion
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-6 overflow-auto">
+        <router-outlet />
+    </main>
+</div>

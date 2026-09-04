@@ -4,6 +4,6 @@ export interface AuthRequest {
 }
 
 export interface TokenResponse {
-    access_roken: string;
+    access_token: string;
     token_type: string;
 }

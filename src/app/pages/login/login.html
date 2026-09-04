@@ -1,0 +1,36 @@
+<div class="min-h-screen bg-surface flex items-center justify-center px-4">
+    <div class="w-full max-w-sm">
+        <h1 class="font-display font-bold text-3xl text-ink mb-2">
+            Panel Varoe
+        </h1>
+        <p class="text-ink/60 mb-6">
+            Inicia sesion en el panel
+        </p>
+
+        <form [formGroup]="formulario" (ngSubmit)="submit()" class="bg-white border border-line rounded-2xl p-6 flex flex-col gap-4">
+            @if (notificacionService.mensaje()) {
+                <div class="bg-red-500/10 text-red-600 text-sm px-4 py-2 rounded-lg">
+                    {{ notificacionService.mensaje() }}
+                </div>
+            }
+            <div>
+                <label class="text-sm text-ink/70">Nombre de usuario</label>
+                <input formControlName="username" class="mt-1 w-full border border-line rounded-full px-4 py-2 text-sm bg-surface focus:border-purple-border focus:outline-none focus:rinf-2 focus:ring-pruple-border/50 transition-colors" />
+                @if (formulario.get('username')?.invalid && formulario.get('username')?.touched) {
+                    <p class="text-xs text-red-border mt-1">El nombre de usuario es obligatorio</p>
+                }
+            </div>
+
+            <div>
+                <label class="text-sm text-ink/70">Contraseña</label>
+                <input formControlName="password" type="password" class="mt-1 w-full border border-line rounded-full px-4 py-2 text-sm bg-surface focus:border-purple-border focus:outline-none focus:ring-2 focus:ring-purple-border/50 transition-colors" />
+                @if (formulario.get('password')?.invalid && formulario.get('password')?.touched) {
+                    <p class="text-xd text-red-border mt-1">La contraseña es obligatoria</p>
+                }
+            </div>
+            <button type="submit" class="mt-2 bg-primary text-white rounded-full px-4 py-2 font-medium hover:bg-primary-dark cursor-pointer transition-colors">
+                Entrar
+            </button>
+        </form>
+    </div>
+</div>
