@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<h2 class="font-bold text-2xl mb-8">Dashboard</h2>
+<div class="bg-surface grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <app-option-card
+        titulo="Productos" descripcion="Gestiona los productos" ruta="/productos"
+    />
+    <app-option-card
+        titulo="Categorías" descripcion="Gestiona las categorias" ruta="/categorias"
+    />
+    <app-option-card
+        titulo="Usuarios" descripcion="Administrar usuarios" ruta="/usuarios"
+    />
+</div>

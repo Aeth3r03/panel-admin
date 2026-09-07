@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { OptionCard } from '../../shared/option-card/option-card';
 
 @Component({
-  imports: [],
+  imports: [OptionCard],
   selector: 'app-dashboard',
   styleUrl: './dashboard.css',
   templateUrl: './dashboard.html',
