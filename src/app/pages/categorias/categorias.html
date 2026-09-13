@@ -1,0 +1,66 @@
+<app-header [titulo]="'Categorías'">
+    <button (click)="abrirCrear()" class="cursor-pointer rounded-2xl border border-line hover:border-primary hover:outline-none transition-colors p-4">+ Categoria</button>
+    <label>
+        DevMode
+        <input type="checkbox" [(ngModel)]="devMode" />
+    </label>
+</app-header>
+
+@if (cargando()) {
+    <div class="w-full h-full flex items-center justify-center">
+        <p class="text-gray-700">Cargando categorías...</p>
+    </div>
+}
+
+<div class="bg-surface">
+    @if (dialogoAbierto()) {
+        <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" (click)="cerrarDialogo()">
+            <div class="bg-white rounded-2xl p-6 w-full max-w-md" (click)="$event.stopPropagation()">
+                <h2 class="text-2xl pb-6 font-bold flex justify-center">{{ modoEdicion() ? 'Editar categoría' : 'Crear nueva categoría' }} </h2>
+                <img [src]="urlImagenModal()" />
+                <input class="w-full p-3 rounded-2xl border border-line focus:border-primary focus:outline-none transition-colors" type="text" [formControl]="nombre" placeholder="Nombre de la categoria" />
+                @if (notificacionService.mensaje()) {
+                    <div class="text-red-border mt-1 flex justify-center">
+                        {{ notificacionService.mensaje() }}
+                    </div>
+                }
+                <div class="grid grid-cols-2 pt-8 gap-4">
+                    <button class="cursor-pointer rounded-2xl bg-gray-300 p-2" type="button" (click)="cerrarDialogo()">Cancelar</button>
+                    <button class="cursor-pointer rounded-2xl bg-primary/90 p-2" type="button" (click)="guardar()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <div class="grid gap-4">
+        @for (categoria of categorias(); track categoria.id) {
+            <app-category-card 
+            [categoria]="categoria" 
+            (editar)="abrirEditar(categoria)" 
+            (eliminar)="confirmarEliminar(categoria)"/>
+        }
+    </div>
+
+    @if (dialogoEliminarAbierto()) {
+        <div class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" (click)="cerrarDialogoEliminar()">
+            <div class="bg-white rounded-2xl p-6 w-full max-w-md" (click)="$event.stopPropagation()">
+                <h2 class="text-2xl font-bold flex justify-center">Confirmar</h2>
+                <p class="pt-4 text-center">
+                    ¿Eliminar <span class="font-semibold">{{ categoriaEliminar()?.nombre }}</span>?
+                </p>
+                @if (notificacionService.mensaje()) {
+                    <div class="text-red-border mt-1 flex justify-center">
+                        {{ notificacionService.mensaje() }}
+                    </div>
+                    
+                }
+                <div class="grid grid-cols-2 pt-8 gap-4">
+                    <button class="cursor-pointer rounded-2xl bg-red-500 text-white p-2" type="button" (click)="eliminar(categoriaEliminar()!.id)">Eliminar</button>
+                    <button class="cursor-pointer rounded-2xl bg-gray-300 p-2" type="button" (click)="cerrarDialogoEliminar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

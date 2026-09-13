@@ -1,4 +1,5 @@
 export const environment = {
-    production: true,
-    apiUrl: 'https://192.168.122.155/api/v1'
+    production: false,
+    apiUrl: 'https://192.168.122.155/api/v1',
+    backendUrl: 'https://192.168.122.155'
 }
